@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-neutral-dark text-white;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 sm:px-8 lg:px-12 xl:px-16;
+  }
+  
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-bright via-primary-sky to-accent-turquoise bg-clip-text text-transparent;
+  }
+  
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+  }
+  
+  .button-primary {
+    @apply bg-gradient-blue text-white px-6 py-3 rounded-lg font-semibold 
+           hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary-bright/50;
+  }
+  
+  .button-secondary {
+    @apply border-2 border-primary-bright text-primary-bright px-6 py-3 rounded-lg font-semibold
+           hover:bg-primary-bright hover:text-white transition-all duration-300;
+  }
+}
