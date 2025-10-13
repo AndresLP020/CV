@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Github } from 'lucide-react'
 
-const index = () => {
+const Projects = () => {
   const projects = [
     {
       title: 'Plataforma de aprendizaje para niños con dislexia',
@@ -190,4 +190,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Projects
