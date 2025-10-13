@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const Skills = () => {
+const index = () => {
   const skillCategories = [
     {
       title: 'Frontend',
@@ -105,4 +105,4 @@ const Skills = () => {
   )
 }
 
-export default Skills
+export default index

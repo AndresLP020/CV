@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Code, Coffee, Lightbulb, Target } from 'lucide-react'
 
-const About = () => {
+const index = () => {
   const features = [
     {
       icon: Code,
@@ -129,4 +129,4 @@ const About = () => {
   )
 }
 
-export default About
+export default index

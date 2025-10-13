@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Download, Github, Linkedin, Mail } from 'lucide-react'
 
-const Hero = () => {
+const index = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -135,4 +135,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default index

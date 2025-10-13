@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const Experience = () => {
+const index = () => {
   return (
     <section id="experience" className="py-20 bg-gradient-to-br from-neutral-dark to-neutral-gray">
       <div className="container-max section-padding">
@@ -87,4 +87,4 @@ const Experience = () => {
   )
 }
 
-export default Experience
+export default index
