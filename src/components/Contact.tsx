@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
 
 const Contact = () => {
@@ -48,6 +48,12 @@ const Contact = () => {
       href: 'tel:+527121537999'
     },
     {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      value: '+52 712 153 7999',
+      href: 'https://wa.me/527121537999'
+    },
+    {
       icon: MapPin,
       label: 'Ubicación',
       value: 'México',
@@ -67,6 +73,12 @@ const Contact = () => {
       label: 'LinkedIn',
       href: 'https://linkedin.com/in/andres-lopez-pina',
       color: 'hover:text-blue-400'
+    },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      href: 'https://wa.me/527121537999',
+      color: 'hover:text-green-400'
     },
     {
       icon: Twitter,

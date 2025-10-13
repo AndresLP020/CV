@@ -56,12 +56,18 @@ const About = () => {
             className="relative"
           >
             <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
+              animate={{ rotate: [0, 2, -2, 0] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="relative z-10"
             >
-              <div className="w-80 h-80 mx-auto bg-gradient-blue rounded-full flex items-center justify-center text-6xl font-bold text-white shadow-2xl">
-                ALP
+              <div className="w-80 h-80 mx-auto rounded-full overflow-hidden shadow-2xl border-4 border-primary-bright/20">
+                <motion.img
+                  src="/Yo.jpg"
+                  alt="Andrés López Piña"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                />
               </div>
             </motion.div>
             

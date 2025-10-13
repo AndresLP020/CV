@@ -1,50 +1,50 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Eye } from 'lucide-react'
+import { ExternalLink, Github } from 'lucide-react'
 
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Moderno',
-      description: 'Plataforma de comercio electrónico completa con panel de administración, procesamiento de pagos y sistema de inventario en tiempo real.',
-      image: '/placeholder-project-1.jpg',
-      technologies: ['Next.js', 'TypeScript', 'Stripe', 'MongoDB', 'Tailwind CSS'],
+      title: 'Plataforma de aprendizaje para niños con dislexia',
+      description: 'Plataforma de aprendizaje desarrollada con React, Tailwind, Node.js, y MongoDB. Incluye panel inicial de información para los usuarios, test y ejercicios especiales para niños con dislexia.',
+      image: '/DislexiaKids.png',
+      technologies: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
       features: [
-        'Autenticación y autorización completa',
-        'Procesamiento de pagos con Stripe',
-        'Panel de administración avanzado',
-        'Sistema de inventario en tiempo real'
+        'Panel inicial de información para usuarios',
+        'Test especializados para diagnóstico',
+        'Ejercicios adaptativos para dislexia',
+        'Seguimiento de progreso personalizado'
       ],
       liveUrl: '#',
       githubUrl: '#',
       status: 'Completado'
     },
     {
-      title: 'Dashboard Analytics',
-      description: 'Dashboard interactivo para análisis de datos con gráficos dinámicos, filtros avanzados y exportación de reportes.',
-      image: '/placeholder-project-2.jpg',
-      technologies: ['React', 'D3.js', 'Node.js', 'PostgreSQL', 'Chart.js'],
+      title: 'Implementación gráfica para el manejo de información de forma eficiente',
+      description: 'Sitio web para el control de información de alumnos de nuevo ingreso de 2 planteles. Incluye diversas opciones de filtrado de información entre ellas se puede observar por carreras, promedio, aprobados, reprobados y planteles, desarrollado con HTML, CSS, JavaScript, PHP, MariaDB.',
+      image: '/ImplementacionGrafica.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MariaDB'],
       features: [
-        'Gráficos interactivos en tiempo real',
-        'Filtros y búsquedas avanzadas',
-        'Exportación de reportes en PDF/Excel',
-        'API RESTful optimizada'
+        'Control de información de alumnos de nuevo ingreso',
+        'Filtrado por carreras y planteles',
+        'Análisis de promedios y rendimiento académico',
+        'Dashboard con estadísticas de aprobados/reprobados'
       ],
       liveUrl: '#',
       githubUrl: '#',
-      status: 'En desarrollo'
+      status: 'Completado'
     },
     {
-      title: 'App de Gestión de Proyectos',
-      description: 'Aplicación completa para gestión de proyectos con colaboración en tiempo real, asignación de tareas y seguimiento de progreso.',
-      image: '/placeholder-project-3.jpg',
-      technologies: ['Vue.js', 'Socket.io', 'Express', 'MongoDB', 'Vuetify'],
+      title: 'Sistema integral de servicio social',
+      description: 'Página web de gestión de horas realizadas por los pasantes. Inicio de sesión con correo institucional, chequeo automático de horas, actividades realizadas que se pueden consultar por día gracias a un calendario interactivo. Desarrollado con React, Material UI, JavaScript y MongoDB.',
+      image: '/ControlDeServicioSocial.png',
+      technologies: ['React', 'JavaScript', 'Material UI', 'MongoDB'],
       features: [
-        'Colaboración en tiempo real',
-        'Sistema de notificaciones',
-        'Asignación y seguimiento de tareas',
-        'Calendario integrado'
+        'Inicio de sesión con correo institucional',
+        'Chequeo automático de horas de servicio',
+        'Calendario interactivo para consulta de actividades',
+        'Gestión integral de pasantes y supervisores'
       ],
       liveUrl: '#',
       githubUrl: '#',
@@ -83,13 +83,13 @@ const Projects = () => {
             >
               {/* Imagen del proyecto */}
               <div className="relative h-48 bg-gradient-blue overflow-hidden">
-                <motion.div
+                <motion.img
+                  src={project.image}
+                  alt={project.title}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full h-full bg-gradient-to-br from-primary-bright/30 to-accent-turquoise/30 flex items-center justify-center"
-                >
-                  <Eye size={48} className="text-white/70" />
-                </motion.div>
+                  className="w-full h-full object-cover"
+                />
                 
                 {/* Estado del proyecto */}
                 <div className="absolute top-4 right-4">
