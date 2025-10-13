@@ -6,6 +6,7 @@ const nextConfig = {
   // Configuración de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],
+    unoptimized: false,
   },
 
   // Headers de seguridad básicos
