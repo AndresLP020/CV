@@ -1,0 +1,45 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+.DS_Store
+*.pem
+
+# Logs
+logs
+*.log
+
+# Temporary
+.tmp/
+.temp/
+
+# Git
+.git/
+.github/
+
+# README files
+README-NEW.md
