@@ -16,12 +16,12 @@ const Index = () => {
   const [certificateOpen, setCertificateOpen] = useState(false)
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative min-h-screen">
       <AmbientBackground />
       <CursorGlow />
       <ScrollProgress />
       <Navigation hidden={certificateOpen} />
-      <div className="relative z-10">
+      <div className="relative z-10 isolate">
         <Hero />
         <About />
         <Skills />

@@ -20,7 +20,7 @@ const SpotlightCard = ({ children, className = '', tilt = false }: SpotlightCard
     const y = event.clientY - rect.top
     setSpot({ x, y, active: true })
 
-    if (tilt) {
+    if (tilt && window.matchMedia('(pointer: fine)').matches) {
       const rotateY = ((x / rect.width) - 0.5) * 12
       const rotateX = (0.5 - (y / rect.height)) * 12
       node.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`

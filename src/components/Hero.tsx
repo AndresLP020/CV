@@ -19,21 +19,27 @@ const Hero = () => {
     const id = setInterval(() => {
       setRoleIndex((current) => (current + 1) % roles.length)
     }, 2200)
-    return () => clearInterval(id)
+    const ready = window.setTimeout(() => {
+      document.getElementById('hero')?.classList.add('hero-ready')
+    }, 1600)
+    return () => {
+      clearInterval(id)
+      window.clearTimeout(ready)
+    }
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+    <section id="hero" className="relative min-h-[100svh] flex items-center justify-center">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-          className="absolute left-1/2 top-[18%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full border border-cyan-300/10"
+          className="absolute left-1/2 top-[18%] h-[20rem] w-[20rem] -translate-x-1/2 rounded-full border border-cyan-300/10 md:h-[34rem] md:w-[34rem]"
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
-          className="absolute left-1/2 top-[12%] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full border border-violet-400/10"
+          className="absolute left-1/2 top-[12%] h-[26rem] w-[26rem] -translate-x-1/2 rounded-full border border-violet-400/10 md:h-[42rem] md:w-[42rem]"
         />
       </div>
 
@@ -54,8 +60,8 @@ const Hero = () => {
               {word.split('').map((char, index) => (
                 <motion.span
                   key={`${word}-${char}-${index}`}
-                  initial={{ opacity: 0, y: 48, rotateX: 80 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  initial={{ opacity: 0, y: 36 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, delay: 0.18 + (wordIndex * 7 + index) * 0.03, ease: 'easeOut' }}
                   className="inline-block gradient-text"
                 >
@@ -74,9 +80,9 @@ const Hero = () => {
               <AnimatePresence mode="wait">
                 <motion.span
                   key={roles[roleIndex]}
-                  initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -18, filter: 'blur(8px)' }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 gradient-text font-semibold"
                 >

@@ -46,7 +46,7 @@
   }
 
   .card-glass {
-    @apply backdrop-blur-xl rounded-2xl;
+    @apply backdrop-blur-md md:backdrop-blur-xl rounded-2xl;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow:
@@ -168,11 +168,16 @@
   to { transform: translateX(130%); }
 }
 
+.hero-ready h1 span,
+.hero-ready p,
+.hero-ready a,
+.hero-ready div {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
   }
 }
