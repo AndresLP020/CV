@@ -1,15 +1,27 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Outfit, Syne } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-body',
+})
+
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-display',
+})
 
 export const metadata: Metadata = {
   title: 'Portafolio - Andrés López Piña',
-  description: 'Desarrollador Full Stack con 1 año de experiencia en React, Next.js, Node.js y MongoDB',
+  description: 'Estudiante de Ingeniería en Sistemas Computacionales, desarrollador Full Stack en búsqueda de residencia profesional.',
   keywords: 'desarrollador, full stack, react, nextjs, nodejs, mongodb, typescript',
   authors: [{ name: 'Andrés López Piña' }],
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -19,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={`${outfit.variable} ${syne.variable} font-body`}>{children}</body>
     </html>
   )
 }

@@ -1,37 +1,34 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle, Twitter } from 'lucide-react'
 import { useState } from 'react'
+import SectionTitle from '@/components/ui/SectionTitle'
+import SpotlightCard from '@/components/ui/SpotlightCard'
+import MagneticButton from '@/components/ui/MagneticButton'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   })
-
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [sent, setSent] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Aquí iría la lógica para enviar el formulario
-    // Por ahora simulamos el envío
     setTimeout(() => {
       setIsSubmitting(false)
-      alert('¡Mensaje enviado exitosamente!')
+      setSent(true)
       setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 2000)
+    }, 1600)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const contactInfo = [
@@ -39,239 +36,173 @@ const Contact = () => {
       icon: Mail,
       label: 'Email',
       value: 'andreslopezpina187@gmail.com',
-      href: 'mailto:andreslopezpina187@gmail.com'
+      href: 'mailto:andreslopezpina187@gmail.com',
     },
     {
       icon: Phone,
       label: 'Teléfono',
       value: '+52 712 153 7999',
-      href: 'tel:+527121537999'
+      href: 'tel:+527121537999',
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
       value: '+52 712 153 7999',
-      href: 'https://wa.me/527121537999'
+      href: 'https://wa.me/527121537999',
     },
     {
       icon: MapPin,
       label: 'Ubicación',
       value: 'México',
-      href: '#'
-    }
+      href: '#',
+    },
   ]
 
   const socialLinks = [
-    {
-      icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/AndresLP020',
-      color: 'hover:text-gray-400'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/andres-lopez-pina',
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: MessageCircle,
-      label: 'WhatsApp',
-      href: 'https://wa.me/527121537999',
-      color: 'hover:text-green-400'
-    },
-    {
-      icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/andreslopez',
-      color: 'hover:text-blue-400'
-    }
+    { icon: Github, label: 'GitHub', href: 'https://github.com/AndresLP020' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/andres-lopez-pina' },
+    { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/527121537999' },
+    { icon: Twitter, label: 'Twitter', href: 'https://twitter.com/andreslopez' },
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-neutral-dark to-neutral-gray">
+    <section id="contact" className="section-shell pb-28">
       <div className="container-max section-padding">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-            Contáctame
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            ¿Tienes un proyecto en mente? ¡Hablemos y hagamos realidad tus ideas!
-          </p>
-        </motion.div>
+        <SectionTitle
+          eyebrow="Hablemos"
+          title="Contáctame"
+          subtitle="¿Tienes un proyecto en mente? Convirtamos esa idea en un producto memorable."
+        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Información de contacto */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Información de Contacto
-              </h3>
-              <p className="text-gray-300 mb-8 leading-relaxed">
-                Estoy siempre abierto a discutir nuevas oportunidades, proyectos interesantes
-                o simplemente tener una conversación sobre tecnología. No dudes en contactarme.
-              </p>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="space-y-5">
+            {contactInfo.map((item, index) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                initial={{ opacity: 0, x: -28 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="block"
+              >
+                <SpotlightCard className="p-4">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white">
+                      <item.icon size={22} />
+                    </div>
+                    <div>
+                      <p className="text-cyan-300 font-semibold">{item.label}</p>
+                      <p className="text-white/70">{item.value}</p>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </motion.a>
+            ))}
 
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => (
+            <div className="flex gap-3 pt-4">
+              {socialLinks.map((social, index) => (
                 <motion.a
-                  key={item.label}
-                  href={item.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  className="flex items-center gap-4 p-4 card-glass hover:bg-white/15 transition-all duration-300 group"
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{ y: -6, scale: 1.08 }}
+                  className="p-3 card-glass text-cyan-200"
                 >
-                  <div className="p-3 bg-gradient-blue rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <item.icon size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <p className="text-primary-bright font-semibold">{item.label}</p>
-                    <p className="text-gray-300">{item.value}</p>
-                  </div>
+                  <social.icon size={22} />
                 </motion.a>
               ))}
             </div>
+          </div>
 
-            {/* Redes sociales */}
-            <div className="pt-8">
-              <h4 className="text-white font-semibold mb-4">Sígueme en:</h4>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    className={`p-3 card-glass text-white ${social.color} transition-all duration-300`}
-                  >
-                    <social.icon size={24} />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Formulario de contacto */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="card-glass p-8 space-y-6">
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Envíame un mensaje
-              </h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <SpotlightCard className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <h3 className="display-font text-2xl font-bold text-white mb-2">Envíame un mensaje</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-white/80 font-medium mb-2">Nombre *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="input-glow"
+                      placeholder="Tu nombre"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white/80 font-medium mb-2">Email *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="input-glow"
+                      placeholder="tu@email.com"
+                    />
+                  </div>
+                </div>
                 <div>
-                  <label className="block text-white font-medium mb-2">
-                    Nombre *
-                  </label>
+                  <label className="block text-white/80 font-medium mb-2">Asunto *</label>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-bright focus:outline-none transition-colors"
-                    placeholder="Tu nombre"
+                    className="input-glow"
+                    placeholder="Asunto del mensaje"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-white font-medium mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
+                  <label className="block text-white/80 font-medium mb-2">Mensaje *</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-bright focus:outline-none transition-colors"
-                    placeholder="tu@email.com"
+                    rows={5}
+                    className="input-glow resize-none"
+                    placeholder="Cuéntame sobre tu proyecto o idea..."
                   />
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Asunto *
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-bright focus:outline-none transition-colors"
-                  placeholder="Asunto del mensaje"
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">
-                  Mensaje *
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary-bright focus:outline-none transition-colors resize-none"
-                  placeholder="Cuéntame sobre tu proyecto o idea..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full button-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                    />
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    Enviar Mensaje
-                  </>
-                )}
-              </motion.button>
-            </form>
+                <MagneticButton type="submit" disabled={isSubmitting} className="button-primary w-full">
+                  {isSubmitting ? (
+                    <>
+                      <motion.span
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                      />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      {sent ? '¡Mensaje listo!' : 'Enviar Mensaje'}
+                    </>
+                  )}
+                </MagneticButton>
+              </form>
+            </SpotlightCard>
           </motion.div>
         </div>
+
+        <p className="text-center text-white/30 text-sm mt-16">
+          © {new Date().getFullYear()} Andrés López Piña. Hecho con Next.js y mucha curiosidad.
+        </p>
       </div>
     </section>
   )

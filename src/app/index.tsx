@@ -1,36 +1,36 @@
 'use client'
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Experience from '@/components/Experience'
 import Skills from '@/components/Skills'
+import Certifications from '@/components/Certifications'
 import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
 import Navigation from '@/components/Navigation'
+import AmbientBackground from '@/components/effects/AmbientBackground'
+import CursorGlow from '@/components/effects/CursorGlow'
+import ScrollProgress from '@/components/effects/ScrollProgress'
 
-class index extends React.Component {
-  render() {
-    return (
-      <main className="min-h-screen bg-gradient-hero">
-        <Navigation />
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Hero />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Contact />
-        </motion.div>
-      </main>
-    )
-  }
+const Index = () => {
+  const [certificateOpen, setCertificateOpen] = useState(false)
+
+  return (
+    <main className="relative min-h-screen overflow-x-hidden">
+      <AmbientBackground />
+      <CursorGlow />
+      <ScrollProgress />
+      <Navigation hidden={certificateOpen} />
+      <div className="relative z-10">
+        <Hero />
+        <About />
+        <Skills />
+        <Certifications onOpenChange={setCertificateOpen} />
+        <Projects />
+        <Contact />
+      </div>
+    </main>
+  )
 }
 
-export default index
+export default Index
