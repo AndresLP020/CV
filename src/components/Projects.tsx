@@ -6,7 +6,43 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import MagneticButton from '@/components/ui/MagneticButton'
 
+const isExternalUrl = (url?: string) => Boolean(url && url !== '#')
+
 const projects = [
+  {
+    title: 'MP Marketing Group — Sitio corporativo',
+    description: 'Sitio corporativo inmersivo para una firma de reclutamiento, capacitación y colocación de talento. Presenta servicios, metodología, marcas aliadas y contacto, con hero 3D, scroll cinematográfico y SEO técnico para una experiencia de marca premium.',
+    image: '/MPMarketing.png?v=hero2',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'Three.js', 'Lenis'],
+    features: [
+      'Hero 3D con Three.js, React Three Fiber y scroll inmersivo (GSAP + Lenis)',
+      'Ciclo completo de reclutamiento, capacitación, colocación y seguimiento',
+      'Formulario de contacto con Route Handler, WhatsApp y mapa embebido',
+      'SEO con Metadata API, JSON-LD, sitemap, robots y Open Graph dinámico',
+    ],
+    liveUrl: 'https://mp-marketing-brown.vercel.app/',
+    githubUrl: '',
+    status: 'En línea',
+    featured: true,
+    heroImage: true,
+  },
+  {
+    title: 'Finanzas Personales — Libro de caja',
+    description: 'Calculadora de finanzas personales en HTML, CSS y JS vanilla, con estética de libro contable. Saldo en tiempo real, historial de folios, animación con Motion, nube de partículas en Three.js y persistencia en MongoDB Atlas (Express en Render, front en Vercel).',
+    image: '/FinanzasPersonales.jpg',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Motion', 'Three.js', 'Express', 'MongoDB Atlas'],
+    features: [
+      'Ingresos y gastos por partidas (fijo, variable, ahorro) con saldo en vivo',
+      'Sellar folio, reabrir o vaciar historial; copia local y sincronización con Atlas',
+      'Desglose porcentual tipo ticket y UI editorial de libro de caja',
+      'Esfera de partículas 3D ligada al signo y tamaño del saldo',
+    ],
+    liveUrl: 'https://calculadora-de-finanzas-personales.vercel.app',
+    githubUrl: '',
+    status: 'En línea',
+    featured: true,
+    heroImage: true,
+  },
   {
     title: 'VENDAPP - Sistema POS y E-commerce con IA',
     description: 'Sistema de punto de venta y tienda en línea con inventario en tiempo real, pagos con Stripe y un chatbot culinario que recomienda recetas y genera listas de compras según el stock disponible.',
@@ -107,12 +143,12 @@ const ProjectCard = ({
       className={large ? 'h-full' : ''}
     >
       <SpotlightCard tilt className="group h-full">
-        <div className="relative h-56 md:h-64 shine-sweep overflow-hidden bg-gradient-to-br from-indigo-500/40 via-cyan-400/20 to-violet-500/30">
+        <div className={`relative shine-sweep overflow-hidden bg-gradient-to-br from-indigo-500/40 via-cyan-400/20 to-violet-500/30 ${large ? 'h-64 md:h-80' : 'h-56 md:h-64'} ${project.heroImage ? 'md:h-[28rem]' : ''}`}>
           {project.image ? (
             <motion.img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${project.heroImage ? 'object-top' : ''}`}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center px-6 text-center relative">
@@ -131,24 +167,36 @@ const ProjectCard = ({
             </span>
           </div>
 
-          <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-            <motion.a
-              href={project.liveUrl}
-              whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-cyan-400 text-neutral-dark"
-            >
-              <ExternalLink size={18} />
-            </motion.a>
-            <motion.a
-              href={project.githubUrl}
-              whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-3 rounded-full bg-black/70 text-white border border-white/20"
-            >
-              <Github size={18} />
-            </motion.a>
-          </div>
+          {(isExternalUrl(project.liveUrl) || isExternalUrl(project.githubUrl)) && (
+            <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+              {isExternalUrl(project.liveUrl) && (
+                <motion.a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-full bg-cyan-400 text-neutral-dark"
+                  aria-label={`Abrir ${project.title}`}
+                >
+                  <ExternalLink size={18} />
+                </motion.a>
+              )}
+              {isExternalUrl(project.githubUrl) && (
+                <motion.a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 rounded-full bg-black/70 text-white border border-white/20"
+                  aria-label={`GitHub de ${project.title}`}
+                >
+                  <Github size={18} />
+                </motion.a>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="p-6">
@@ -157,7 +205,7 @@ const ProjectCard = ({
           </h3>
           <p className="text-white/60 text-sm mb-4 leading-relaxed">{project.description}</p>
           <ul className="space-y-1 mb-4">
-            {project.features.slice(0, 2).map((feature) => (
+            {project.features.slice(0, large ? 4 : 2).map((feature) => (
               <li key={feature} className="text-white/45 text-xs flex items-start gap-2">
                 <span className="text-cyan-300 mt-1">✦</span>
                 {feature}
@@ -174,6 +222,17 @@ const ProjectCard = ({
               </span>
             ))}
           </div>
+          {isExternalUrl(project.liveUrl) && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-100"
+            >
+              <ExternalLink size={14} />
+              Ver sitio en vivo
+            </a>
+          )}
         </div>
       </SpotlightCard>
     </motion.div>
@@ -190,14 +249,26 @@ const Projects = () => {
         <SectionTitle
           eyebrow="Portfolio"
           title="Proyectos"
-          subtitle="Una muestra de los sistemas que he construido, desde e-commerce con IA hasta soluciones educativas"
+          subtitle="Una muestra de los sistemas que he construido, desde experiencias editoriales hasta sitios corporativos y e-commerce con IA"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {featured.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} large />
+        {featured
+          .filter((project) => project.heroImage)
+          .map((project, index) => (
+            <div key={project.title} className="mb-8">
+              <ProjectCard project={project} index={index} large />
+            </div>
           ))}
-        </div>
+
+        {featured.filter((project) => !project.heroImage).length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {featured
+              .filter((project) => !project.heroImage)
+              .map((project, index) => (
+                <ProjectCard key={project.title} project={project} index={index + 2} large />
+              ))}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {rest.map((project, index) => (
